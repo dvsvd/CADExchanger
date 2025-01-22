@@ -76,7 +76,7 @@ int main()
 	std::vector<std::shared_ptr<CadexShapes::Circle>> vec2;
 	transform_if(vec.begin(), vec.end(), std::back_inserter(vec2),
 		[](auto e) { return std::dynamic_pointer_cast<CadexShapes::Circle>(e); },
-		[](auto ptr) { return std::dynamic_pointer_cast<CadexShapes::Circle>(ptr).get() != nullptr; });
+		[](auto ptr) -> bool { return (bool)std::dynamic_pointer_cast<CadexShapes::Circle>(ptr); });
 	//Task 5
 	std::sort(vec2.begin(), vec2.end(),
 		[](auto a, auto b) { return a->r() < b->r(); });
